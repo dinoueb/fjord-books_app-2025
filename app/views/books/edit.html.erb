@@ -1,12 +1,12 @@
-<% content_for :title, "Editing book" %>
+<% content_for :title, t('.title') %>
 
-<h1>Editing book</h1>
+<h1><%= t('.title') %></h1>
 
 <%= render "form", book: @book %>
 
 <br>
 
 <div>
-  <%= link_to "Show this book", @book %> |
-  <%= link_to "Back to books", books_path %>
+  <%= link_to t('links.show', model: Book.model_name.human), @book %> |
+  <%= link_to t('links.back', model: Book.model_name.human(count: 2)), books_path %>
 </div>

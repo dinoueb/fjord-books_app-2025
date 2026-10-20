@@ -1,0 +1,8 @@
+ja:
+  links:
+    show: '%{model}を表示'
+    back: '%{model}に戻る'
+    edit: '%{model}を編集'
+    new: '新しい%{model}'
+  buttons:
+    destroy: '%{model}を破壊'

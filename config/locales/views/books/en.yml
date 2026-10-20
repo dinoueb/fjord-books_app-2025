@@ -28,4 +28,17 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  books:
+    book:
+      title: 'Title'
+      memo: 'Memo'
+      author: 'Author'
+      picture: 'Picture'
+    edit:
+      title: 'Editing book'
+    index:
+      title: 'Books'
+    new:
+      title: 'New book'
+    show:
+      
