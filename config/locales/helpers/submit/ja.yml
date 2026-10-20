@@ -2,4 +2,4 @@ ja:
   helpers:
     submit:
       create: "%{model}を作成"
-      update: "%{model}を更新"
+      update: "%{model}を編集"

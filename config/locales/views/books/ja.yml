@@ -6,9 +6,9 @@ ja:
       author: '著者'
       picture: '画像'
     edit:
-      title: '本を編集'
+      title: '本の編集'
     index:
-      title: '本'
+      title: '本の一覧'
     new:
       title: '新しい本'
 
