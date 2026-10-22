@@ -70,3 +70,5 @@ group :test do
 end
 
 gem 'carrierwave'
+
+gem 'kaminari', '>= 1.2.2'
