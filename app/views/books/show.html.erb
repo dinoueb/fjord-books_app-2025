@@ -5,7 +5,7 @@
 </div>
 
 <nav class="page-nav">
-  <%= link_to t('links.edit', model: Book.model_name.human), edit_book_path(@book) %> |
-  <%= link_to t('links.back', model: Book.model_name.human(count: 2)), books_path %>
-  <%= button_to t('buttons.destroy', model: Book.model_name.human), @book, method: :delete %>
+  <%= link_to t('defaults.links.edit', model: Book.model_name.human), edit_book_path(@book) %> |
+  <%= link_to t('defaults.links.back', model: Book.model_name.human(count: 2)), books_path %>
+  <%= button_to t('defaults.buttons.destroy', model: Book.model_name.human), @book, method: :delete %>
 </nav>
