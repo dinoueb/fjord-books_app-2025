@@ -1,0 +1,9 @@
+en:
+  defaults:
+    links:
+      show: 'Show this %{model}'
+      back: 'Back to %{model}'
+      edit: 'Edit this %{model}'
+      new: 'New %{model}'
+    buttons:
+      destroy: 'Destroy this %{model}'
