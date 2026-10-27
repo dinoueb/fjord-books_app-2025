@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 class ProfilesController < ApplicationController
   before_action :set_user, only: %i[show edit update]
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     has_password_param = !params[:user][:current_password].empty? || !params[:user][:password].empty? || !params[:user][:password_confirmation].empty?
