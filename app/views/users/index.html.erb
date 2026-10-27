@@ -1,0 +1,23 @@
+| <%= link_to t('views.common.show', name: UserProfile.model_name.human.downcase), profile_path %>
+
+<p style="color: green"><%= notice %></p>
+
+<% title = t('views.common.title_index', name: i18n_pluralize(User.model_name.human)) %>
+<% content_for :title, title %>
+
+<h1><%= title %></h1>
+
+<div id="users" class="index-items">
+  <% @users.each do |user| %>
+    <div class="index-item">
+      <div id="<%= dom_id user %>">
+        <p>
+          <strong><%= User.human_attribute_name(:id) %>:</strong>
+          <%= user.id %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= paginate @users %>

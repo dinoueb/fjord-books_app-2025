@@ -1,0 +1,31 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="show-item">
+  <div id="<%= dom_id @user %>">
+    <p>
+      <strong><%= User.human_attribute_name(:email) %>:</strong>
+      <%= @user.email %>
+    </p>
+
+    <p>
+      <strong><%= UserProfile.human_attribute_name(:zipcode) %>:</strong>
+      <%= @user.user_profile&.zipcode %>
+    </p>
+
+    <p>
+      <strong><%= UserProfile.human_attribute_name(:address) %>:</strong>
+      <%= @user.user_profile&.address %>
+    </p>
+
+    <p>
+      <strong><%= UserProfile.human_attribute_name(:description) %>:</strong>
+      <%= @user.user_profile&.description %>
+    </p>
+
+  </div>
+</div>
+
+<nav class="page-nav">
+  <%= link_to t('views.common.edit', name: UserProfile.model_name.human.downcase), edit_profile_path %> |
+  <%= link_to t('views.common.back', name: i18n_pluralize(User.model_name.human.downcase)), users_path %>
+</nav>

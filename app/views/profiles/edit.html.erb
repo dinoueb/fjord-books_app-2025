@@ -1,0 +1,70 @@
+<% title = t('views.common.title_edit', name: UserProfile.model_name.human.downcase) %>
+<% content_for :title, title %>
+
+<h1><%= title %></h1>
+
+<%= form_with(model: @user, url: profile_path) do |form| %>
+  <% if @user.errors.any? || @user.user_profile.errors.any? %>
+    <div style="color: red">
+      <% error_count = @user.errors.count + @user.user_profile.errors.count %>
+      <h2><%= t('views.common.validation_error', errors: i18n_error_count(error_count), name: UserProfile.model_name.human.downcase) %>:</h2>
+
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+        <% @user.user_profile.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :current_password, style: "display: block" %>
+    <%= form.password_field :current_password %>
+  </div>
+
+  <div>
+    <%= form.label :password, style: "display: block" %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.label :password_confirmation, style: "display: block" %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+
+  <%= form.fields_for @user.user_profile do |user_profile_fields| %>
+    <div>
+      <%= user_profile_fields.label :zipcode, style: "display: block" %>
+      <%= user_profile_fields.text_field :zipcode %>
+    </div>
+
+    <div>
+      <%= user_profile_fields.label :address, style: "display: block" %>
+      <%= user_profile_fields.text_field :address %>
+    </div>
+
+    <div>
+      <%= user_profile_fields.label :description, style: "display: block" %>
+      <%= user_profile_fields.text_area :description %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<br>
+
+<nav class="page-nav">
+  <%= link_to t('views.common.show', name: UserProfile.model_name.human.downcase), profile_path %> |
+  <%= link_to t('views.common.back', name: i18n_pluralize(User.model_name.human.downcase)), users_path %>
+</nav>

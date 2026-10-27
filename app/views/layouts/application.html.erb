@@ -23,6 +23,10 @@
   </head>
 
   <body class="<%= params[:action] %>">
+    <% if user_signed_in? %>
+      <%= link_to t('views.common.logout'), destroy_user_session_path, data: { turbo_method: :delete } %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
