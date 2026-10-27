@@ -7,3 +7,11 @@ en:
       new: 'New %{model}'
     buttons:
       destroy: 'Destroy this %{model}'
+    titles:
+      edit: 'Editing %{model}'
+      index: '%{model}'
+      new: 'New %{model}'
+    notices:
+      create: '%{model} was successfully created.'
+      update: '%{model} was successfully updated.'
+      destroy: '%{model} was successfully destroyed.'

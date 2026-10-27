@@ -1,6 +1,6 @@
 <% content_for :title, t('.title') %>
 
-<h1><%= t('.title') %></h1>
+<h1><%= t('defaults.titles.edit', model: Book.model_name.human) %></h1>
 
 <%= render "form", book: @book %>
 

@@ -7,3 +7,11 @@ ja:
       new: '新しい%{model}を作成'
     buttons:
       destroy: '%{model}を削除'
+    titles:
+      edit: '%{model}の編集'
+      index: '%{model}の一覧'
+      new: '新しい%{model}'
+    notices:
+      create: '%{model}の作成に成功しました。'
+      update: '%{model}の編集に成功しました。'
+      destroy: '%{model}の削除に成功しました。'
