@@ -23,23 +23,9 @@
   </head>
 
   <body class="<%= params[:action] %>">
-    <div>
-      <% if user_signed_in? %>
-        <%= link_to t('views.common.logout'), destroy_user_session_path, data: { turbo_method: :delete }, class: "navbar-link"  %>
-      <% else %>
-        <%= link_to t('views.common.sign_up'), new_user_registration_path %> |
-        <%= link_to t('views.common.login'), new_user_session_path %>
-      <% end %>
-    </div>
-    
-    <div>
-      <% if notice %>
-        <p><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p><%= alert %></p>
-      <% end %>
-    </div>
+    <% if user_signed_in? %>
+      <%= link_to t('views.common.logout'), destroy_user_session_path, data: { turbo_method: :delete }, class: "navbar-link"  %>
+    <% end %>
     
     <%= yield %>
   </body>
