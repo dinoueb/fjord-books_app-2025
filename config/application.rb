@@ -23,5 +23,6 @@ module BooksApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.action_mailer.delivery_method = :letter_opener_web
   end
 end
