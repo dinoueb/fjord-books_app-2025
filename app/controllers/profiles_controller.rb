@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
     render :edit, status: :unprocessable_entity
   else
     bypass_sign_in(@user)
-    redirect_to profile_path
+    redirect_to profile_path, notice: t('controllers.common.notice_update', name: UserProfile.model_name.human)
   end
 
   private
