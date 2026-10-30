@@ -2,10 +2,10 @@
 
 class UsersController < ApplicationController
   def index
-    @users = User.order(:id).page(params[:page])
+    @users = User.includes(:icon_blob).page(params[:page])
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:icon_blob).find(params[:id])
   end
 end
