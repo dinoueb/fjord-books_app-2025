@@ -9,17 +9,12 @@ class ProfilesController < ApplicationController
   def edit; end
 
   def update
-    has_password_param = !params[:user][:current_password].empty? || !params[:user][:password].empty? || !params[:user][:password_confirmation].empty?
+    is_email_changed = params[:user][:email] != @user.email
+    is_password_changed = !params[:user][:password].empty? || !params[:user][:password_confirmation].empty?
     ActiveRecord::Base.transaction do
-      is_commit = if has_password_param
-                    @user.update_with_password(user_params)
-                  else
-                    @user.update_without_password(user_params.slice(:email))
-                  end
-
       @user.user_profile.update!(profile_params)
 
-      raise ActiveRecord::RecordInvalid unless is_commit
+      raise ActiveRecord::RecordInvalid if (is_email_changed || is_password_changed) && !@user.update_with_password(user_params)
     end
   rescue ActiveRecord::RecordInvalid
     render :edit, status: :unprocessable_entity
