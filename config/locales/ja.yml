@@ -184,6 +184,9 @@ ja:
     pm: 午後
   views:
     common:
+      login: 'ログイン'
+      logout: 'ログアウト'
+      sign_up: 'アカウント登録'
       show: "この%{name}を表示"
       edit: "この%{name}を編集"
       destroy: "この%{name}を削除"
