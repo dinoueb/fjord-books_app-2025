@@ -1,0 +1,24 @@
+<%= turbo_frame_tag @comment do %>
+  <% if current_user.name.empty? %>
+    <p>
+      <strong><%= User.human_attribute_name(:email) %>:</strong>
+      <%= current_user.email %>
+    </p>
+  <% else %>
+    <p>
+      <strong><%= User.human_attribute_name(:name) %>:</strong>
+      <%= current_user.name %>
+    </p>
+  <% end %>
+
+  <p>
+    <strong><%= Comment.human_attribute_name(:created_at) %>:</strong>
+    <%= l(@comment.created_at, format: :long) %>
+  </p>
+
+  <%= render 'comments/form', comment: @comment %>
+
+  <nav class="page-nav">
+    <%= link_to t('views.common.cancel'), [@comment.commentable, @comment] %>
+  </nav>
+<% end %>

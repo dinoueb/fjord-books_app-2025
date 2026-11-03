@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ReportsController < ApplicationController
-  before_action :set_report, only: %i[show edit update destroy]
+  before_action :set_report, only: %i[edit update destroy]
   before_action :check_report_owner, only: %i[edit update destroy]
 
   # GET /reports or /reports.json
@@ -10,7 +10,11 @@ class ReportsController < ApplicationController
   end
 
   # GET /reports/1 or /reports/1.json
-  def show; end
+  def show
+    @report = Report.includes(comments: :user)
+                    .order('comments.created_at')
+                    .find(params.expect(:id))
+  end
 
   # GET /reports/new
   def new
