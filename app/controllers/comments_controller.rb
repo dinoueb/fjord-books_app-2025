@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[show edit update destroy]
+  before_action :check_comment_owner, only: %i[edit update destroy]
 
   # GET /comments/1 or /comments/1.json
   def show
@@ -68,5 +69,9 @@ class CommentsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def comment_params
     params.expect(comment: :comment)
+  end
+
+  def check_comment_owner
+    redirect_to @comment.commentable, status: :forbidden unless @comment.user_id == current_user.id
   end
 end
