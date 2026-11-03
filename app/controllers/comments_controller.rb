@@ -1,14 +1,14 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[show edit update destroy]
   before_action :check_comment_owner, only: %i[edit update destroy]
 
   # GET /comments/1 or /comments/1.json
-  def show
-  end
+  def show; end
 
   # GET /comments/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /comments or /comments.json
   def create
@@ -23,9 +23,9 @@ class CommentsController < ApplicationController
     if @comment.save
       respond_to do |format|
         format.turbo_stream do
-          render turbo_stream: [ 
-            turbo_stream.append(:comments, partial: "comments/comment", locals: { comment: @comment }),
-            turbo_stream.replace(:new_comment, partial: "comments/create_form", locals: { comment: commentable.comments.build })
+          render turbo_stream: [
+            turbo_stream.append(:comments, partial: 'comments/comment', locals: { comment: @comment }),
+            turbo_stream.replace(:new_comment, partial: 'comments/create_form', locals: { comment: commentable.comments.build })
           ]
         end
         format.html { redirect_to commentable }
@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       respond_to do |format|
         format.turbo_stream do
-          render turbo_stream: turbo_stream.update(@comment, partial: "comments/comment", locals: { comment: @comment })
+          render turbo_stream: turbo_stream.update(@comment, partial: 'comments/comment', locals: { comment: @comment })
         end
         format.html { redirect_to @comment.commentable }
       end
@@ -56,7 +56,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@comment) }
       format.html         { redirect_to @comment.commentable }
-    end 
+    end
   end
 
   private
