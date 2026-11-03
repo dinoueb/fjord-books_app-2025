@@ -1,13 +1,13 @@
 <%= turbo_frame_tag @comment do %>
-  <% if current_user.name.empty? %>
+  <% if @comment.user.name.empty? %>
     <p>
       <strong><%= User.human_attribute_name(:email) %>:</strong>
-      <%= current_user.email %>
+      <%= @comment.user.email %>
     </p>
   <% else %>
     <p>
       <strong><%= User.human_attribute_name(:name) %>:</strong>
-      <%= current_user.name %>
+      <%= @comment.user.name %>
     </p>
   <% end %>
 
