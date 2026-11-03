@@ -2,6 +2,8 @@
 
 class ProfilesController < ApplicationController
   before_action :set_user, only: %i[show edit update]
+  before_action :check_owner_profile, only: %i[edit update]
+
   def show; end
 
   def edit; end
@@ -23,13 +25,13 @@ class ProfilesController < ApplicationController
     render :edit, status: :unprocessable_entity
   else
     bypass_sign_in(@user)
-    redirect_to profile_path, notice: t('controllers.common.notice_update', name: UserProfile.model_name.human)
+    redirect_to user_profile_path(@user), notice: t('controllers.common.notice_update', name: UserProfile.model_name.human)
   end
 
   private
 
   def set_user
-    @user = User.includes(:user_profile).find(current_user.id)
+    @user = User.includes(:user_profile).find(params[:user_id])
     @user.user_profile ||= @user.build_user_profile
   end
 
@@ -39,5 +41,9 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.expect(user: { user_profile: %i[zipcode address description] })[:user_profile]
+  end
+
+  def check_owner_profile
+    redirect_to users_path, status: :forbidden unless @user.id == current_user.id
   end
 end

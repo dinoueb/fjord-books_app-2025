@@ -26,6 +26,8 @@
 </div>
 
 <nav class="page-nav">
-  <%= link_to t('views.common.edit', name: UserProfile.model_name.human.downcase), edit_profile_path %> |
+  <% if @user.id == current_user.id %>
+    <%= link_to t('views.common.edit', name: UserProfile.model_name.human.downcase), edit_user_profile_path(@user) %> |
+  <% end %>
   <%= link_to t('views.common.back', name: i18n_pluralize(User.model_name.human.downcase)), users_path %>
 </nav>

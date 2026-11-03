@@ -3,7 +3,7 @@
 
 <h1><%= title %></h1>
 
-<%= form_with(model: @user, url: profile_path) do |form| %>
+<%= form_with(model: @user, url: user_profile_path(@user)) do |form| %>
   <% if @user.errors.any? || @user.user_profile.errors.any? %>
     <div style="color: red">
       <% error_count = @user.errors.count + @user.user_profile.errors.count %>
@@ -65,6 +65,6 @@
 <br>
 
 <nav class="page-nav">
-  <%= link_to t('views.common.show', name: UserProfile.model_name.human.downcase), profile_path %> |
+  <%= link_to t('views.common.show', name: UserProfile.model_name.human.downcase), user_profile_path(@user) %> |
   <%= link_to t('views.common.back', name: i18n_pluralize(User.model_name.human.downcase)), users_path %>
 </nav>

@@ -1,4 +1,4 @@
-| <%= link_to t('views.common.show', name: UserProfile.model_name.human.downcase), profile_path %>
+| <%= link_to t('views.common.show', name: UserProfile.model_name.human.downcase), user_profile_path(current_user) %>
 
 <p style="color: green"><%= notice %></p>
 
@@ -14,6 +14,9 @@
         <p>
           <strong><%= User.human_attribute_name(:id) %>:</strong>
           <%= user.id %>
+        </p>
+        <p>
+          <%= link_to t('views.common.show', name: User.model_name.human.downcase), user_profile_path(user) %>
         </p>
       </div>
     </div>

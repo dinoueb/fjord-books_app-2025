@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :users, only: %i[index]
-  resource :profile, only: %i[show edit update]
+  resources :users, only: :index do
+    resource :profile, only: %i[show edit update]
+  end
   resources :books
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
