@@ -1,0 +1,9 @@
+<h2><%= i18n_pluralize(Comment.model_name.human) %></h2>
+
+<div id="comments">
+  <% commentable.comments.each do |comment| %>
+    <%= render 'comments/comment', comment: comment %>
+  <% end %>
+</div>
+
+<%= render 'comments/create_form', comment: commentable.comments.build %>
