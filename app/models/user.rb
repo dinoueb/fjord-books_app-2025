@@ -15,7 +15,7 @@ class User < ApplicationRecord
   def icon_content_type
     return unless icon.attached?
 
-    image_extensions = %w[image/png image/jpg image/jpeg]
+    image_extensions = %w[image/jpeg image/png image/gif]
     errors.add(:icon, :wrong_extension) unless icon.content_type.in?(image_extensions)
   end
 end
