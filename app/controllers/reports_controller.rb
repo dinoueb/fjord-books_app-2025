@@ -12,7 +12,7 @@ class ReportsController < ApplicationController
   # GET /reports/1 or /reports/1.json
   def show
     @report = Report.includes(comments: :user)
-                    .order('comments.created_at')
+                    .order('comments.id')
                     .find(params.expect(:id))
   end
 

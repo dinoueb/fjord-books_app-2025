@@ -11,7 +11,7 @@ class BooksController < ApplicationController
   # GET /books/1 or /books/1.json
   def show
     @book = Book.includes(comments: :user)
-                .order('comments.created_at')
+                .order('comments.id')
                 .find(params.expect(:id))
   end
 
