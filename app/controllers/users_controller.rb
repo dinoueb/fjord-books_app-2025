@@ -2,10 +2,10 @@
 
 class UsersController < ApplicationController
   def index
-    @users = User.includes(:icon_blob).page(params[:page])
+    @users = User.with_attached_icon.page(params[:page])
   end
 
   def show
-    @user = User.includes(:icon_blob).find(params[:id])
+    @user = User.with_attached_icon.find(params[:id])
   end
 end
