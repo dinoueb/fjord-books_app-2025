@@ -203,6 +203,8 @@ ja:
       previous: '‹ 前'
       next: '次 ›'
       truncate: '…'
+    mentions:
+      title: 'この%{name}は以下の%{names}からリンクされています'
   controllers:
     common:
       notice_create: "%{name}が作成されました。"

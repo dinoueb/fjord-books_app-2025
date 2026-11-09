@@ -8,7 +8,7 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @report = Report.find(params[:id])
+    @report = Report.includes(:mentioned_reports).order(mentioned_reports: { id: :desc }).find(params[:id])
   end
 
   def new
@@ -20,19 +20,27 @@ class ReportsController < ApplicationController
   def create
     @report = current_user.reports.new(report_params)
 
-    if @report.save
-      redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
-    else
+    begin
+      ActiveRecord::Base.transaction do
+        @report.save!
+        @report.mentioning_report_ids = scan_mention_ids(params[:report][:content])
+      end
+    rescue StandardError
       render :new, status: :unprocessable_entity
+    else
+      redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
     end
   end
 
   def update
-    if @report.update(report_params)
-      redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
-    else
-      render :edit, status: :unprocessable_entity
+    ActiveRecord::Base.transaction do
+      @report.update!(report_params)
+      @report.mentioning_report_ids = scan_mention_ids(params[:report][:content])
     end
+  rescue StandardError
+    render :edit, status: :unprocessable_entity
+  else
+    redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
   end
 
   def destroy
@@ -49,5 +57,9 @@ class ReportsController < ApplicationController
 
   def report_params
     params.expect(report: %i[user_id title content])
+  end
+
+  def scan_mention_ids(content)
+    content.scan(%r{http://localhost:3000/reports/(\d+)}).flatten.uniq
   end
 end
