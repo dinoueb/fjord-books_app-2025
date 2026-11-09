@@ -59,6 +59,7 @@ group :development do
   gem 'erb_lint', require: false
   gem 'faker'
   gem 'i18n_generators'
+  gem 'letter_opener_web', '~> 3.0'
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
@@ -72,3 +73,7 @@ end
 
 gem 'carrierwave'
 gem 'kaminari'
+
+gem 'devise', '~> 5.0'
+
+gem 'devise-i18n', '~> 1.16'
