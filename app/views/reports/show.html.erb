@@ -6,7 +6,7 @@
 
 <%= render 'application/comments', commentable: @report %>
 
-<h2>この記事は以下の記事からリンクされています</h2>
+<h2><%= t('views.mentions.title', name: Report.model_name.human, names: Report.model_name.human(count: 2)) %></h2>
 
 <% @report.mentioned_reports.each do |report| %>
   <div>
