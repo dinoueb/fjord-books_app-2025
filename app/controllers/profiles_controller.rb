@@ -39,6 +39,6 @@ class ProfilesController < ApplicationController
   end
 
   def check_owner_profile
-    redirect_to users_path, status: :forbidden unless @user.id == current_user.id
+    redirect_to users_path unless @user.id == current_user.id
   end
 end
