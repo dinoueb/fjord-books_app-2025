@@ -4,13 +4,13 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: %i[show edit update destroy]
   before_action :check_comment_owner, only: %i[edit update destroy]
 
-  # GET /comments/1 or /comments/1.json
+  # GET /comments/1
   def show; end
 
   # GET /comments/1/edit
   def edit; end
 
-  # POST /comments or /comments.json
+  # POST /comments
   def create
     commentable = if params[:book_id]
                     Book.find(params[:book_id])
@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /comments/1 or /comments/1.json
+  # PATCH/PUT /comments/1
   def update
     if @comment.update(comment_params)
       respond_to do |format|
@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  # DELETE /comments/1 or /comments/1.json
+  # DELETE /comments/1
   def destroy
     @comment.destroy!
 
