@@ -21,15 +21,10 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
 
     if @comment.save
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.append(:comments, partial: 'comments/comment', locals: { comment: @comment }),
-            turbo_stream.replace(:new_comment, partial: 'comments/create_form', locals: { comment: commentable.comments.build })
-          ]
-        end
-        format.html { redirect_to commentable }
-      end
+      render turbo_stream: [
+        turbo_stream.append(:comments, partial: 'comments/comment', locals: { comment: @comment }),
+        turbo_stream.replace(:new_comment, partial: 'comments/create_form', locals: { comment: commentable.comments.build })
+      ]
     else
       render :new, status: :unprocessable_entity
     end
@@ -38,12 +33,7 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   def update
     if @comment.update(comment_params)
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.update(@comment, partial: 'comments/comment', locals: { comment: @comment })
-        end
-        format.html { redirect_to @comment.commentable }
-      end
+      render turbo_stream: turbo_stream.update(@comment, partial: 'comments/comment', locals: { comment: @comment })
     else
       render :edit, status: :unprocessable_entity
     end
@@ -53,10 +43,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy!
 
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@comment) }
-      format.html         { redirect_to @comment.commentable }
-    end
+    render turbo_stream: turbo_stream.remove(@comment)
   end
 
   private
