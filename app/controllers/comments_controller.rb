@@ -59,6 +59,6 @@ class CommentsController < ApplicationController
   end
 
   def check_comment_owner
-    redirect_to @comment.commentable unless @comment.user_id == current_user.id
+    redirect_to @comment.commentable if @comment.user_id != current_user.id
   end
 end

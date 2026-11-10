@@ -64,6 +64,6 @@ class ReportsController < ApplicationController
   end
 
   def check_report_owner
-    redirect_to reports_path unless @report.user_id == current_user.id
+    redirect_to reports_path if @report.user_id != current_user.id
   end
 end
