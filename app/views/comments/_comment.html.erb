@@ -1,6 +1,6 @@
 <%= turbo_frame_tag comment do %>
   <div class="show-item">
-    <div id="<%= dom_id comment %>">
+    <div>
       <% if comment.user.name.empty? %>
         <p>
           <strong><%= User.human_attribute_name(:email) %>:</strong>
