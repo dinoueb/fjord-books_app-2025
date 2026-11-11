@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   def update
     if @comment.update(comment_params)
-      render turbo_stream: turbo_stream.update(@comment, partial: 'comments/comment', locals: { comment: @comment })
+      render turbo_stream: turbo_stream.replace(@comment, partial: 'comments/comment', locals: { comment: @comment })
     else
       render :edit, status: :unprocessable_entity
     end
