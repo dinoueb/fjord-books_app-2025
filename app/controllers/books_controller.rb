@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class BooksController < ApplicationController
-  before_action :set_book, only: %i[show edit update destroy]
+  before_action :set_book, only: %i[edit update destroy]
 
   # GET /books or /books.json
   def index
@@ -9,7 +9,11 @@ class BooksController < ApplicationController
   end
 
   # GET /books/1 or /books/1.json
-  def show; end
+  def show
+    @book = Book.includes(comments: :user)
+                .order('comments.id')
+                .find(params.expect(:id))
+  end
 
   # GET /books/new
   def new

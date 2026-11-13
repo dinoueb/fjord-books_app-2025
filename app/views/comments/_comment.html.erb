@@ -1,0 +1,35 @@
+<%= turbo_frame_tag comment do %>
+  <div class="show-item">
+    <div>
+      <% if comment.user.name.empty? %>
+        <p>
+          <strong><%= User.human_attribute_name(:email) %>:</strong>
+          <%= comment.user.email %>
+        </p>
+      <% else %>
+        <p>
+          <strong><%= User.human_attribute_name(:name) %>:</strong>
+          <%= comment.user.name %>
+        </p>
+      <% end %>
+
+      <p>
+        <strong><%= Comment.human_attribute_name(:created_at) %>:</strong>
+        <%= l(comment.created_at, format: :long) %>
+      </p>
+
+      <p>
+        <strong><%= Comment.human_attribute_name(:comment) %>:</strong>
+        <%= comment.comment %>
+      </p>
+
+    </div>
+  </div>
+
+  <nav class="page-nav">
+    <% if comment.user_id == current_user.id %>
+      <%= link_to t('views.common.edit', name: Comment.model_name.human.downcase), [:edit, comment.commentable, comment] %> |
+      <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), [comment.commentable, comment], method: :delete %>
+    <% end %>
+  </nav>
+<% end %>
