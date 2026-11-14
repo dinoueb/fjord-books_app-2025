@@ -1,11 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  title: MyString
-  content: MyText
+# one:
+  # user: one
+  # title: MyString
+  # content: MyText
+#
+# two:
+  # user: two
+  # title: MyString
+  # content: MyText
 
-two:
-  user: two
-  title: MyString
-  content: MyText
+alice_report:
+  user: alice
+  title: 'Railsの勉強'
+  content: 'テストの書き方を学んだよ'
