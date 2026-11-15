@@ -30,6 +30,20 @@ class ReportsTest < ApplicationSystemTestCase
     assert_text users(:alice).name
   end
 
+  test 'create report with mention' do
+    visit reports_url
+    click_on '日報の新規作成'
+
+    fill_in 'タイトル', with: '他日報へ言及する日報'
+    fill_in '内容', with: "http://localhost:3000/reports/#{reports(:alice_report).id}"
+    click_on '登録する'
+
+    assert_text '日報が作成されました。'
+    assert_text '他日報へ言及する日報'
+    assert_text "http://localhost:3000/reports/#{reports(:alice_report).id}"
+    assert_text users(:alice).name
+  end
+
   test 'should update Report' do
     visit report_url(reports(:alice_report))
     click_on 'この日報を編集'
