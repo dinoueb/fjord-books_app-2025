@@ -20,4 +20,36 @@ class Report < ApplicationRecord
   def created_on
     created_at.to_date
   end
+
+  def save_with_mentions
+    return false if invalid?
+
+    transaction do
+      save!
+      self.mentioning_report_ids = mention_ids
+    end
+
+    true
+  end
+
+  def update_with_mentions(report_params)
+    return false if invalid?
+
+    transaction do
+      update!(report_params)
+      self.mentioning_report_ids = mention_ids
+    end
+
+    true
+  end
+
+  private
+
+  def mention_ids
+    ids = content.scan(%r{http://localhost:3000/reports/(\d+)})
+                 .flatten
+                 .uniq
+                 .reject { |mention_id| mention_id.to_i == id }
+    Report.where(id: ids).ids
+  end
 end
