@@ -16,6 +16,16 @@ module ApplicationHelper
   end
 
   def format_content(content)
-    safe_join(content.split("\n"), tag.br)
+    processed_content = content.split("\n").map do |line|
+      processed_line = line.split(%r{(http://localhost:3000\S*)}).map do |part|
+        if part.match?(%r{http://localhost:3000\S*})
+          link_to part, part
+        else
+          part
+        end
+      end
+      safe_join(processed_line, '')
+    end
+    safe_join(processed_content, tag.br)
   end
 end
