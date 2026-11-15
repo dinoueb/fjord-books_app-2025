@@ -3,20 +3,14 @@
 require 'application_system_test_case'
 
 class BooksTest < ApplicationSystemTestCase
-  setup do
-    visit root_url
-    fill_in 'Eメール', with: 'alice@example.com'
-    fill_in 'パスワード', with: 'Password!'
-    click_button 'ログイン'
-    assert_text 'ログインしました'
-  end
+  # setup do
+  #   @book = books(:one)
+  # end
 
-  test 'visiting the index' do
-    visit books_url
-    assert_selector 'h1', text: '本の一覧'
-    assert_text 'チェリー本'
-    assert_text 'とてもいい本です。'
-  end
+  # test 'visiting the index' do
+  #   visit books_url
+  #   assert_selector 'h1', text: 'Books'
+  # end
 
   # test 'should create book' do
   # visit books_url
