@@ -50,8 +50,4 @@ class ReportsController < ApplicationController
   def report_params
     params.expect(report: %i[user_id title content])
   end
-
-  def scan_mention_ids(content)
-    content.scan(%r{http://localhost:3000/reports/(\d+)}).flatten.uniq
-  end
 end
