@@ -9,14 +9,18 @@ class ReportTest < ActiveSupport::TestCase
 
   test '#editable?' do
     alice_report = reports(:alice_report)
-    alice = users(:alice)
+    alice = alice_report.user
+    bob = users(:bob)
 
     assert alice_report.editable?(alice)
+    assert_not alice_report.editable?(bob)
   end
 
   test '#created_on' do
-    alice_report = reports(:alice_report)
+    report = reports(:alice_report)
+    today = Time.zone.today
 
-    assert_equal alice_report.created_at.to_date, alice_report.created_on
+    assert_equal today, report.created_on
+    assert_not_equal today.next_day, report.created_on
   end
 end

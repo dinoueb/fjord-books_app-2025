@@ -19,3 +19,7 @@ bob:
   email: 'bob@example.com'
   name: 'Bob'
   encrypted_password: <%= Devise::Encryptor.digest(User, 'Password!') %>
+
+no_name:
+  email: 'noName@example.com'
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'Password!') %>
