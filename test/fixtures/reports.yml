@@ -14,3 +14,9 @@ alice_report:
   user: alice
   title: 'Railsの勉強'
   content: 'テストの書き方を学んだよ'
+
+bob_report:
+  user: bob
+  title: 'Railsの実習'
+  content: 'テストを書いたよ'
+
