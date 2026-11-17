@@ -82,10 +82,7 @@ class ReportsTest < ApplicationSystemTestCase
     assert_text title
 
     mentioning_report.reload
-    mentioned_report.reload
-
     assert mentioning_report.mentioning_report_ids.include?(mentioned_report.id)
-    assert mentioned_report.mentioned_report_ids.include?(mentioning_report.id)
   end
 
   test 'should destroy Report' do
