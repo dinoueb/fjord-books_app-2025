@@ -17,7 +17,7 @@ class ReportTest < ActiveSupport::TestCase
   end
 
   test '#created_on' do
-    new_year_report = reports(:reportIn20260101)
+    new_year_report = reports(:reportOn20260101)
 
     assert_equal Date.new(2026, 1, 1), new_year_report.created_on
   end

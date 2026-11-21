@@ -10,7 +10,7 @@ bob_report:
   title: 'Railsの実習'
   content: 'テストを書いたよ'
 
-reportIn20260101:
+reportOn20260101:
   user: alice
   title: '2026/1/1'
   content: 'あけおめ'
