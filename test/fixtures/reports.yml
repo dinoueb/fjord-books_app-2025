@@ -1,11 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  title: MyString
-  content: MyText
+alice_report:
+  user: alice
+  title: 'Railsの勉強'
+  content: 'テストの書き方を学んだよ'
 
-two:
-  user: two
-  title: MyString
-  content: MyText
+bob_report:
+  user: bob
+  title: 'Railsの実習'
+  content: 'テストを書いたよ'
+
+reportOn20260101:
+  user: alice
+  title: '2026/1/1'
+  content: 'あけおめ'
+  created_at: '2026-1-1 00:00:01'
