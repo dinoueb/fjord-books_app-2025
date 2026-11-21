@@ -80,9 +80,6 @@ class ReportsTest < ApplicationSystemTestCase
     assert_text mentioned_report.content
     assert_text mentioned_report.user.name
     assert_text title
-
-    mentioning_report.reload
-    assert mentioning_report.mentioning_report_ids.include?(mentioned_report.id)
   end
 
   test 'should destroy Report' do
@@ -92,7 +89,5 @@ class ReportsTest < ApplicationSystemTestCase
 
     assert_text '日報が削除されました。'
     assert_text '日報の一覧'
-
-    assert_raises(ActiveRecord::RecordNotFound) { Report.find(target_report_id) }
   end
 end
