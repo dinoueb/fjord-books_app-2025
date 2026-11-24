@@ -51,6 +51,7 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
 
+  # 日報の言及機能のシステムテストで画面遷移を成功させるために指定
   Capybara.app_host = 'http://localhost'
   Capybara.server_port = 3000
 end
