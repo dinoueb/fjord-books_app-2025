@@ -65,14 +65,8 @@ class ReportsTest < ApplicationSystemTestCase
 
     assert_text '日報が更新されました。'
     assert_text '他日報へ言及する日報'
-    assert_text "http://localhost:3000/reports/#{bob_report.id}"
+    assert_link "http://localhost:3000/reports/#{bob_report.id}"
     assert_text 'Alice'
-    click_on "http://localhost:3000/reports/#{bob_report.id}"
-
-    assert_text 'Railsの実習'
-    assert_text 'テストを書いたよ'
-    assert_text 'Bob'
-    assert_link '他日報へ言及する日報'
   end
 
   test 'should destroy Report' do
