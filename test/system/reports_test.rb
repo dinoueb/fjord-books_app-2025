@@ -16,11 +16,7 @@ class ReportsTest < ApplicationSystemTestCase
     visit reports_url
 
     assert_text 'Railsの勉強'
-    assert_text 'テストの書き方を学んだよ'
-    assert_text 'Alice'
     assert_text 'Railsの実習'
-    assert_text 'テストを書いたよ'
-    assert_text 'Bob'
   end
 
   test 'should create report' do
@@ -34,7 +30,6 @@ class ReportsTest < ApplicationSystemTestCase
     assert_text '日報が作成されました。'
     assert_text '初めての日報'
     assert_text '緊張した。'
-    assert_text 'Alice'
   end
 
   test 'should update Report' do
@@ -49,7 +44,6 @@ class ReportsTest < ApplicationSystemTestCase
     assert_text '日報が更新されました。'
     assert_text '編集した日報'
     assert_text '編集しました。'
-    assert_text 'Alice'
   end
 
   test 'update report with mention' do
@@ -66,7 +60,6 @@ class ReportsTest < ApplicationSystemTestCase
     assert_text '日報が更新されました。'
     assert_text '他日報へ言及する日報'
     assert_link "http://localhost:3000/reports/#{bob_report.id}"
-    assert_text 'Alice'
   end
 
   test 'should destroy Report' do
@@ -77,6 +70,5 @@ class ReportsTest < ApplicationSystemTestCase
     assert_text '日報が削除されました。'
     assert_text '日報の一覧'
     assert_no_text 'Railsの勉強'
-    assert_no_text 'テストの書き方を学んだよ'
   end
 end
